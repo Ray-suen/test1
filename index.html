@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我們的回憶</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            padding: 20px;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+            grid-gap: 10px;
+            justify-content: center;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            margin: auto;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .media-container {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        footer {
+            background-color: transparent;
+            color: #fff;
+            padding: 0;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .love {
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 20px;
+            opacity: 0; /* 初始透明度為 0，隱藏元素 */
+        }
+        .heart {
+            color: red;
+            font-size: 32px;
+            vertical-align: middle;
+        }
+        audio {
+    width: 100%;
+    background-color: transparent; /* 將背景色設置為透明 */
+    padding: 10px;
+}
+
+audio::-webkit-media-controls-panel {
+    background-color: transparent;
+}
+
+audio::-webkit-media-controls-timeline {
+    height: 5px;
+    background-color: transparent; /* 將撥放條的背景色設置為透明 */
+}
+
+audio::-webkit-media-controls-play-button {
+    color: #fff;
+}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 id="daysTogether">我們的回憶</h1>
+</header>
+
+<main>
+    <div class="love" id="loveMessage">
+        我喜歡你寶貝 <span id="daysCount">0</span> 天快樂<span class="heart">♥</span>
+    </div>
+    <div class="gallery">
+        <img src="S__68337666_0.jpg" alt="照片1" style="animation-delay: 1s;"> <!-- 第一張圖片延遲 2 秒 -->
+        <img src="S__68337668_0.jpg" alt="照片2" style="animation-delay: 2s;"> <!-- 延遲 3 秒 -->
+        <img src="S__68337669_0.jpg" alt="照片3" style="animation-delay: 3s;"> <!-- 延遲 4 秒 -->
+        <img src="S__68337672_0.jpg" alt="照片4" style="width: 250px; animation-delay: 4s;"> <!-- 延遲 5 秒 -->
+        <img src="S__68337670_0.jpg" alt="照片5" style="width: 250px; animation-delay: 5s;"> <!-- 延遲 6 秒 -->
+        <img src="S__68337674_0.jpg" alt="照片6" style="width: 250px; animation-delay: 6s;"> <!-- 7 秒 -->
+  
+        <!-- 加入更多照片 -->
+    </div>
+    
+    <!-- 影片容器 -->
+    <div class="media-container">
+        <video controls autoplay loop muted style="width: 50%; animation-delay: 8s;"> <!-- 延遲 8 秒 -->
+            <source src="736783047.133058.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <video controls autoplay loop muted style="width: 50%; animation-delay: 8s;"> <!-- 延遲 8 秒 -->
+            <source src="736783047.037772.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</main>
+
+<footer>
+    <!-- 移除文字內容 -->
+</footer>
+
+<audio controls autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // 定義函數以更新日期和天數
+        function updateDateAndDays() {
+            // 計算從4/8到現在經過的天數
+            var startDate = new Date('2024-04-08T00:00:00');
+            var currentDate = new Date();
+            var timeDiff = currentDate.getTime() - startDate.getTime();
+            var daysTogether = Math.floor(timeDiff / (1000 * 3600 * 24)) + 1;
+
+            // 更新愛的訊息中的天數
+            var daysCountElement = document.getElementById('daysCount');
+            daysCountElement.innerText = daysTogether;
+        }
+
+        // 首次加載頁面時執行一次更新
+        updateDateAndDays();
+
+        // 每秒更新一次日期和天數
+        setInterval(updateDateAndDays, 1000);
+
+        // 監聽最後一張圖片的動畫結束事件
+        var gallery = document.querySelector('.gallery');
+        var lastImage = gallery.lastElementChild;
+
+        lastImage.addEventListener('animationend', function() {
+            // 當最後一張圖片的動畫結束時，顯示 ".love" 元素
+            var loveElement = document.querySelector('.love');
+            loveElement.style.opacity = '1'; // 顯示元素
+        });
+    });
+</script>
+
+</body>
+</html>
