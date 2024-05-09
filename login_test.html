@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登入</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .btn-login:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>登入</h2>
+        <div class="form-group">
+            <label for="username">帳號:</label>
+            <input type="text" id="username" placeholder="輸入您的帳號">
+        </div>
+        <div class="form-group">
+            <label for="password">密碼:</label>
+            <input type="password" id="password" placeholder="輸入您的密碼">
+        </div>
+        <button class="btn-login" onclick="login()">登入</button>
+        <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+        function login() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Basic validation
+            if (username.trim() === "" || password.trim() === "") {
+                document.getElementById("error-message").innerText = "請輸入帳號和密碼";
+                return;
+            }
+
+            // Check username and password
+            if (username === "test" && password === "111") {
+                // Login successful
+                window.location.href = "index.html"; // Redirect to welcome page
+            } else {
+                document.getElementById("error-message").innerText = "帳號或密碼錯誤";
+            }
+        }
+    </script>
+</body>
+
+</html>
